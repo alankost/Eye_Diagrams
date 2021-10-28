@@ -1,3 +1,14 @@
+from ipywidgets import interact, FloatSlider, IntSlider, Button, HBox
+import numpy as np
+from numpy import fft
+from scipy import special
+from scipy.interpolate import CubicSpline
+from bokeh.io import push_notebook
+from bokeh.plotting import figure, show, output_notebook
+from bokeh.models import ColumnDataSource, Range1d, LinearAxis, Title, Label, Span
+from bokeh.layouts import column, row
+from bokeh.models.glyphs import Line
+output_notebook()
 kB = 1.381e-23 # Boltzmann Constant
 T = 300 # Temperature
 R = 0.5 # Responsivity
@@ -6,7 +17,7 @@ G = 10 # Post Load Amplifier Gain
 bandwidth = 2.5 # Receiver Bandwdith in GHz
 sigmaT = np.sqrt(4*kB*T/RL*bandwidth*1e9)*G
 Pave = 10e-6; sigma0 = sigmaT; sigma1 = sigmaT # Divide Pave by 1000 to give voltage in mV
-Q = (2*Pave*R*G/(sigma0+sigma1+1e-6)) # The Q-Factor that gives BER
+Q = (2*Pave*R*RL*G/(sigma0+sigma1+1e-6)) # The Q-Factor that gives BER
 BER = 0.5*special.erfc((Pave*2*R*G)/(sigma0+sigma1)/np.sqrt(2)) # Bit Error Rate
 
 v1 = np.random.normal(0, sigma0*RL, 1000)

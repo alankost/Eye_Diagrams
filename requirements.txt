@@ -3,3 +3,4 @@ bokeh
 ipywidgets
 scipy
 panel
+nbformat

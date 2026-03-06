@@ -1,3 +1,1 @@
-![Alt text][def]
-
-[def]: Images\Error_Dist.png
+![Alt text](.Images\Error_Dist.png)
